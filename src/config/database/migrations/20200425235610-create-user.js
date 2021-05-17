@@ -12,12 +12,21 @@ module.exports = {
         allowNull: false,
       },
       email: {
+        type: Sequelize.DATE,
+        allowNull: false,
+      },
+      email: {
         type: Sequelize.STRING,
         allowNull: false,
       },
       password: {
         type: Sequelize.STRING,
         allowNull: false,
+      },
+      isHairdresser: {
+        type: Sequelize.BOOLEAN,
+        allowNull: false,
+        defaultValue: false,
       },
       password_reset_token: {
         type: Sequelize.STRING,
@@ -28,6 +37,9 @@ module.exports = {
       },
       updated_at: {
         allowNull: false,
+        type: Sequelize.DATE,
+      },
+      deleted_at: {
         type: Sequelize.DATE,
       },
     });

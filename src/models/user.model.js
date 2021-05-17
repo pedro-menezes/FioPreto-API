@@ -7,6 +7,7 @@ module.exports = (sequelize, DataTypes) => {
       name: DataTypes.STRING,
       email: DataTypes.STRING,
       password: DataTypes.STRING,
+      isHairdresser: DataTypes.BOOLEAN,
       passwordResetToken: {
         type: DataTypes.STRING,
         field: 'password_reset_token',
@@ -22,6 +23,8 @@ module.exports = (sequelize, DataTypes) => {
     },
     {
       tableName: 'users',
+      paranoid: true,
+      deletedAt: 'deleted_at',
     },
   );
 
@@ -33,7 +36,7 @@ module.exports = (sequelize, DataTypes) => {
     return user;
   });
 
-  User.prototype.toJSON = function() {
+  User.prototype.toJSON = function () {
     const user = { ...this.get() };
     return Object.fromEntries(Object.entries(user).filter(([key]) => !['password'].includes(key)));
   };

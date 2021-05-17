@@ -1,0 +1,35 @@
+'use strict';
+const { Model } = require('sequelize');
+module.exports = (sequelize, DataTypes) => {
+  class Address extends Model {
+    /**
+     * Helper method for defining associations.
+     * This method is not a part of Sequelize lifecycle.
+     * The `models/index` file will call this method automatically.
+     */
+    static associate(models) {
+      // define association here
+    }
+  }
+  Address.init(
+    {
+      zip: DataTypes.NUMERIC(8),
+      district: DataTypes.STRING,
+      street: DataTypes.STRING,
+      number: DataTypes.INTEGER,
+      street1: DataTypes.STRING,
+      city: DataTypes.STRING,
+      state: DataTypes.STRING(2),
+      ddd: DataTypes.NUMERIC(2),
+      lat: DataTypes.NUMERIC(10, 2),
+      lng: DataTypes.NUMERIC(10, 2),
+    },
+    {
+      tableName: 'addresses',
+      sequelize,
+      modelName: 'Address',
+    },
+  );
+
+  return Address;
+};
