@@ -9,7 +9,7 @@ module.exports = {
   database: process.env.NODE_ENV !== 'test' ? process.env.DB_NAME : `${process.env.DB_NAME}-test`,
   host: process.env.DB_HOST,
   dialectOptions: {
-    ssl: process.env.DB_SSL,
+    ssl: { rejectUnauthorized: false },
   },
   dialect: 'postgres',
 };
