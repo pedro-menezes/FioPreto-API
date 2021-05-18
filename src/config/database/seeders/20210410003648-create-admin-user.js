@@ -7,6 +7,7 @@ module.exports = {
         name: 'Adminisitrador',
         email: 'admin@ioasys.com',
         password: '$2a$08$sTBZNZoGD0Gk1VaEo9bRaOxCDDCEpdMZyFtFsxBeczuJ05kojy.sa',
+        dob: new Date(),
         created_at: new Date(),
         updated_at: new Date(),
       },

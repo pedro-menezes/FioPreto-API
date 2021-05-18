@@ -11,7 +11,7 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: false,
       },
-      email: {
+      dob: {
         type: Sequelize.DATE,
         allowNull: false,
       },
