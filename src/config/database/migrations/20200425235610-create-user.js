@@ -12,7 +12,7 @@ module.exports = {
         allowNull: false,
       },
       dob: {
-        type: Sequelize.DATE,
+        type: Sequelize.DATEONLY,
         allowNull: false,
       },
       email: {
