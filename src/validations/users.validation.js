@@ -2,14 +2,8 @@ const yup = require('yup');
 
 const list = {
   query: yup.object().shape({
-    page: yup
-      .number()
-      .integer()
-      .default(1),
-    perPage: yup
-      .number()
-      .integer()
-      .default(10),
+    page: yup.number().integer().default(1),
+    perPage: yup.number().integer().default(10),
     sortBy: yup
       .string()
       .default('createdAt:desc')
@@ -26,10 +20,8 @@ const get = {
 const create = {
   body: yup.object().shape({
     name: yup.string().required(),
-    email: yup
-      .string()
-      .email()
-      .required(),
+    dob: yup.date().required(),
+    email: yup.string().email().required(),
     password: yup
       .string()
       .min(8)
