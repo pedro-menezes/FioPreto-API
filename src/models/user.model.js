@@ -7,7 +7,7 @@ module.exports = (sequelize, DataTypes) => {
       name: DataTypes.STRING,
       email: DataTypes.STRING,
       password: DataTypes.STRING,
-      dob: DataTypes.DATE,
+      dob: DataTypes.DATEONLY,
       isHairdresser: DataTypes.BOOLEAN,
       passwordResetToken: {
         type: DataTypes.STRING,
