@@ -18,6 +18,7 @@ module.exports = (schema) => async (req, res, next) => {
     next();
   } catch (error) {
     const errors = {};
+    console.error(error);
     error.inner.forEach((error) => {
       const [outerKey, innerKey] = error.path.split('.');
       errors[outerKey] = { [innerKey]: error.message };
