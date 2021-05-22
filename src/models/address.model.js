@@ -31,5 +31,9 @@ module.exports = (sequelize, DataTypes) => {
     },
   );
 
+  Address.associate = (models) => {
+    Address.belongsTo(models.Salon);
+  };
+
   return Address;
 };

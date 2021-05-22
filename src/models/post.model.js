@@ -1,7 +1,7 @@
 'use strict';
 const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class Post_Types extends Model {
+  class Post extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -11,14 +11,21 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   }
-  Post_Types.init(
+  Post.init(
     {
-      type: DataTypes.TEXT,
+      text: DataTypes.TEXT,
+      img: DataTypes.TEXT,
     },
     {
+      tableName: 'posts',
       sequelize,
-      modelName: 'Post_Types',
+      modelName: 'Post',
     },
   );
-  return Post_Types;
+
+  Post.associate = (models) => {
+    Post.belongsToMany(models.User, { through: 'reactions' });
+  };
+
+  return Post;
 };

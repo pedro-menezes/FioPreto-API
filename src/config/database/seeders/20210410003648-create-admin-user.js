@@ -8,6 +8,7 @@ module.exports = {
         email: 'admin@ioasys.com',
         password: '$2a$08$sTBZNZoGD0Gk1VaEo9bRaOxCDDCEpdMZyFtFsxBeczuJ05kojy.sa',
         dob: new Date(),
+        isHairdresser: true,
         created_at: new Date(),
         updated_at: new Date(),
       },

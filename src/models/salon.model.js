@@ -17,6 +17,7 @@ module.exports = (sequelize, DataTypes) => {
       phone: DataTypes.STRING,
       site: DataTypes.STRING,
       payMethods: DataTypes.STRING,
+      cnpj: DataTypes.STRING(14),
     },
     {
       sequelize,
@@ -28,7 +29,9 @@ module.exports = (sequelize, DataTypes) => {
   );
 
   Salon.associate = (models) => {
-    Salon.hasMany(models.Address);
+    Salon.belongsToMany(models.User, { through: 'schedulings' });
+    Salon.belongsToMany(models.User, { through: 'votes' });
   };
+
   return Salon;
 };

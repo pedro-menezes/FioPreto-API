@@ -42,5 +42,12 @@ module.exports = (sequelize, DataTypes) => {
     return Object.fromEntries(Object.entries(user).filter(([key]) => !['password'].includes(key)));
   };
 
+  User.associate = (models) => {
+    User.hasOne(models.Salon, { foreignKey: 'user_id' });
+    User.belongsToMany(models.Post, { through: 'reactions' });
+    User.belongsToMany(models.Salon, { through: 'schedulings' });
+    User.belongsToMany(models.Salon, { through: 'votes' });
+  };
+
   return User;
 };

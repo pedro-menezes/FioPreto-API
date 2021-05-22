@@ -7,4 +7,6 @@ module.exports.messages = {
   invalidAuthFormat: `invalid-authorization-format`,
   authMissing: `missing-authorization-header`,
   internalError: 'internal-server-error',
+  notHairdresser: `user-not-hairdresser`,
+  notOwner: 'user-not-owner',
 };
