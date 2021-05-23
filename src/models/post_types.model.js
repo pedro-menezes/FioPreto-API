@@ -23,7 +23,7 @@ module.exports = (sequelize, DataTypes) => {
   );
 
   Post_Types.associate = (models) => {
-    Post_Types.hasMany(models.Post);
+    Post_Types.hasMany(models.Post, { foreignKey: 'type_id' });
   };
 
   return Post_Types;

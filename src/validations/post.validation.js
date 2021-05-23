@@ -19,17 +19,8 @@ const get = {
 
 const create = {
   body: yup.object().shape({
-    name: yup.string().required(),
-    dob: yup.date().required(),
-    email: yup.string().email().required(),
-    password: yup
-      .string()
-      .min(8)
-      .matches(
-        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$^+=!*()@%&]).{8,10}$/,
-        'password must have lower and upper letters, at least one number, and at least one special character',
-      )
-      .required(),
+    text: yup.string().required(),
+    img: yup.string().required(),
   }),
 };
 
@@ -38,15 +29,8 @@ const update = {
     id: yup.number().integer(),
   }),
   body: yup.object().shape({
-    name: yup.string(),
-    email: yup.string().email(),
-    password: yup
-      .string()
-      .min(8)
-      .matches(
-        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$^+=!*()@%&]).{8,10}$/,
-        'password must have lower and upper letters, at least one number, and at least one special character',
-      ),
+    text: yup.string().required(),
+    img: yup.string().required(),
   }),
 };
 
@@ -56,7 +40,7 @@ const destroy = {
   }),
 };
 
-module.exports.users = {
+module.exports.post = {
   list,
   get,
   create,

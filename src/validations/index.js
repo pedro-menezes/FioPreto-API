@@ -1,9 +1,11 @@
-const { users } = require('./users.validation');
+const { user } = require('./user.validation');
 const { auth } = require('./auth.validation');
 const { salon } = require('./salon.validation');
+const { post } = require('./post.validation');
 
 module.exports.validationSchemas = {
-  users,
+  user,
   auth,
   salon,
+  post,
 };

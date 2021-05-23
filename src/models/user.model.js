@@ -44,6 +44,7 @@ module.exports = (sequelize, DataTypes) => {
 
   User.associate = (models) => {
     User.hasOne(models.Salon, { foreignKey: 'user_id' });
+    User.hasMany(models.Post, { foreignKey: 'user_id' });
     User.belongsToMany(models.Post, { through: 'reactions' });
     User.belongsToMany(models.Salon, { through: 'schedulings' });
     User.belongsToMany(models.Salon, { through: 'votes' });

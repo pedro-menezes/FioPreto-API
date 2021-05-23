@@ -1,17 +1,17 @@
 const router = require('express').Router();
-const { salonController } = require('../controllers');
+const { salonsController } = require('../controllers');
 const { isHairdresser, isAuthorized, validate } = require('../middlewares');
 const {
   validationSchemas: { salon },
 } = require('../validations');
 
 router.use(isAuthorized);
-router.get('/', validate(salon.list), salonController.list);
-router.get('/:id', validate(salon.get), salonController.get);
-router.put('/:id', validate(salon.update), salonController.update);
-router.delete('/:id', validate(salon.destroy), salonController.destroy);
+router.get('/', validate(salon.list), salonsController.list);
+router.get('/:id', validate(salon.get), salonsController.get);
+router.put('/:id', validate(salon.update), salonsController.update);
+router.delete('/:id', validate(salon.destroy), salonsController.destroy);
 
 router.use(isHairdresser);
-router.post('/', validate(salon.create), salonController.create);
+router.post('/', validate(salon.create), salonsController.create);
 
 module.exports.salon = router;
