@@ -15,6 +15,7 @@ module.exports = (sequelize, DataTypes) => {
     {
       text: DataTypes.TEXT,
       img: DataTypes.TEXT,
+      key_img: DataTypes.TEXT,
     },
     {
       tableName: 'posts',

@@ -1,6 +1,6 @@
 const { StatusCodes } = require('http-status-codes');
 const { catchAsync, ApplicationError } = require('../utils');
-const { postsService } = require('../services');
+const { postsService, imagesService } = require('../services');
 const { messages } = require('../helpers');
 
 module.exports = {
@@ -22,7 +22,6 @@ module.exports = {
   }),
 
   create: catchAsync(async (req, res) => {
-    console.log(req);
     const { body } = req;
     body.user_id = req.session.id;
 
@@ -57,6 +56,11 @@ module.exports = {
     }
 
     await postsService.destroy(id);
+
+    if (post.key_img) {
+      await imagesService.destroy(post.key_img);
+    }
+
     return res.status(StatusCodes.NO_CONTENT).end();
   }),
 };

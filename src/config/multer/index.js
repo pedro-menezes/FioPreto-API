@@ -2,6 +2,10 @@ const multer = require('multer');
 const path = require('path');
 const crypto = require('crypto');
 const aws = require('aws-sdk');
+const { StatusCodes } = require('http-status-codes');
+const { ApplicationError } = require('../../utils');
+const { messages } = require('../../helpers');
+
 const multerS3 = require('multer-s3');
 
 const storageTypes = {
@@ -38,9 +42,9 @@ const storageTypes = {
 
 module.exports = {
   dest: path.resolve(__dirname, '..', '..', 'tmp', 'uploads'),
-  storage: storageTypes['s3'],
+  storage: storageTypes[process.env.STORAGE_TYPE],
   limits: {
-    fileSize: 15 * 1024 * 1024,
+    fileSize: 5 * 1024 * 1024,
   },
   fileFilter: (req, file, callback) => {
     const allowedMimes = ['image/jpeg', 'image/pjpeg', 'image/png', 'image/gif'];
@@ -48,7 +52,7 @@ module.exports = {
     if (allowedMimes.includes(file.mimetype)) {
       callback(null, true);
     } else {
-      callback(new Error('Invalid file type.'));
+      callback(new ApplicationError(messages.erroType, StatusCodes.NOT_FOUND));
     }
   },
 };

@@ -9,4 +9,5 @@ module.exports.messages = {
   internalError: 'internal-server-error',
   notHairdresser: `user-not-hairdresser`,
   notOwner: 'user-not-owner',
+  erroType: 'invalid-file-type',
 };

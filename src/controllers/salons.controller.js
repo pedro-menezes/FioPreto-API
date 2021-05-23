@@ -1,6 +1,6 @@
 const { StatusCodes } = require('http-status-codes');
 const { catchAsync, ApplicationError } = require('../utils');
-const { salonService } = require('../services');
+const { salonService, imagesService } = require('../services');
 const { messages } = require('../helpers');
 
 module.exports = {
@@ -56,6 +56,11 @@ module.exports = {
     }
 
     await salonService.destroy(id);
+
+    if (salon.key_img) {
+      await imagesService.destroy(salon.key_img);
+    }
+
     return res.status(StatusCodes.NO_CONTENT).end();
   }),
 };
