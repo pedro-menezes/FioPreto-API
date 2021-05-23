@@ -20,6 +20,7 @@ const get = {
 const create = {
   body: yup.object().shape({
     text: yup.string().required(),
+    type_id: yup.string().required(),
     img: yup.string(),
     key_img: yup.string(),
   }),
@@ -31,6 +32,7 @@ const update = {
   }),
   body: yup.object().shape({
     text: yup.string().required(),
+    type_id: yup.string().required(),
     img: yup.string(),
     key_img: yup.string().required(),
   }),
