@@ -32,21 +32,6 @@ jobs:
       - name: Install NPM dependencies
         run: npm install
 
-      - name: Run Tests
-        env:
-          JWT_SECRET: ${{ secrets.JWT_SECRET }}
-          DB_USER: user
-          DB_PASS: postgresql
-          MAIL_HOST: ${{ secrets.MAIL_HOST }}
-          MAIL_PORT: ${{ secrets.MAIL_PORT }}
-          MAIL_USER: ${{ secrets.MAIL_USER }}
-          MAIL_PASS: ${{ secrets.MAIL_PASS }}
-        run: |
-          bash scripts/environment.sh
-          npm run pretest
-          npm run test:coverage
-          npm run posttest
-
       - name: Codecov
         uses: codecov/codecov-action@v1.0.6
         with:
