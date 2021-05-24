@@ -5,8 +5,9 @@ const {
   validationSchemas: { post },
 } = require('../validations');
 
-router.use(isAuthorized);
 router.get('/', validate(post.list), postsController.list);
+
+router.use(isAuthorized);
 router.get('/:id', validate(post.get), postsController.get);
 router.put('/:id', validate(post.update), postsController.update);
 router.delete('/:id', validate(post.destroy), postsController.destroy);
