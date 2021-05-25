@@ -1,12 +1,14 @@
 const { StatusCodes } = require('http-status-codes');
 const { catchAsync, ApplicationError } = require('../utils');
-const { salonService, imagesService } = require('../services');
+const { salonService, imagesService, addressService } = require('../services');
 const { messages } = require('../helpers');
+const { Address } = require('../models');
 
 module.exports = {
   list: catchAsync(async (req, res) => {
     const { page, perPage, sortBy } = req.query;
-    const response = await salonService.list({ page, perPage, sortBy });
+    const include = { model: Address, as: 'addresses' };
+    const response = await salonService.list({ page, perPage, sortBy, include });
 
     if (!response || response.data.length === 0) {
       return res.status(StatusCodes.NO_CONTENT).end();
@@ -35,9 +37,13 @@ module.exports = {
 
   create: catchAsync(async (req, res) => {
     const { body } = req;
-    body.user_id = req.session.id;
+    body.salon.user_id = req.session.id;
 
-    const response = await salonService.create(body);
+    const response = {};
+    response.salon = await salonService.create(body.salon);
+
+    body.address.salon_id = response.salon.id;
+    response.address = await addressService.create(body.address);
 
     return res.status(StatusCodes.CREATED).json(response);
   }),
@@ -54,7 +60,10 @@ module.exports = {
       throw new ApplicationError(messages.notOwner, StatusCodes.UNAUTHORIZED);
     }
 
-    const response = await salonService.update(id, body);
+    const address = await addressService.getBySalon(id);
+    await addressService.update(address.id, body.address);
+
+    const response = await salonService.update(id, body.salon);
     return res.status(StatusCodes.OK).json(response);
   }),
 
@@ -72,6 +81,9 @@ module.exports = {
     if (salon.key_img) {
       await imagesService.destroy(salon.key_img);
     }
+
+    const address = await addressService.getBySalon(id);
+    await addressService.destroy(address.id);
 
     return res.status(StatusCodes.NO_CONTENT).end();
   }),

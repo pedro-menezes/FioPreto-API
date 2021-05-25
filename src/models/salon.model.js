@@ -33,6 +33,7 @@ module.exports = (sequelize, DataTypes) => {
   );
 
   Salon.associate = (models) => {
+    Salon.hasOne(models.Address, { foreignKey: 'salon_id', as: 'addresses' });
     Salon.belongsToMany(models.User, { through: 'schedulings' });
     Salon.belongsToMany(models.User, { through: 'votes' });
   };

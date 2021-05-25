@@ -19,17 +19,40 @@ const get = {
 
 const create = {
   body: yup.object().shape({
-    name: yup.string().required(),
-    phone: yup.string().required().matches('^\\(\\d{2}\\)\\d{4,5}\\-\\d{4}$'),
-    site: yup.string(),
-    user_id: yup.number().integer(),
-    img: yup.string(),
-    key_img: yup.string(),
-    payMethods: yup.string(),
-    cnpj: yup
-      .string()
-      .test('len', 'Must be exactly 14 characters', (val) => val.length === 14)
-      .matches(/^[0-9]+$/, 'Must be only digits'),
+    salon: yup.object().shape({
+      name: yup.string().required(),
+      phone: yup.string().required().matches('^\\(\\d{2}\\)\\d{4,5}\\-\\d{4}$'),
+      site: yup.string(),
+      user_id: yup.number().integer(),
+      img: yup.string(),
+      key_img: yup.string(),
+      payMethods: yup.string(),
+      cnpj: yup
+        .string()
+        .test('len', 'Must be exactly 14 characters', (val) => val.length === 14)
+        .matches(/^[0-9]+$/, 'Must be only digits'),
+    }),
+    address: yup.object().shape({
+      zip: yup
+        .string()
+        .test('len', 'Must be exactly 8 characters', (val) => val.length === 8)
+        .matches(/^[0-9]+$/, 'Must be only digits'),
+      street: yup.string().required(),
+      street1: yup.string(),
+      number: yup.number().required(),
+      lat: yup.number(),
+      lng: yup.number(),
+      district: yup.string().required(),
+      city: yup.string().required(),
+      state: yup
+        .string()
+        .required()
+        .test('len', 'Must be exactly 2 characters', (val) => val.length === 2),
+      ddd: yup
+        .string()
+        .test('len', 'Must be exactly 2 characters', (val) => val.length === 2)
+        .matches(/^[0-9]+$/, 'Must be only digits'),
+    }),
   }),
 };
 
@@ -38,16 +61,40 @@ const update = {
     id: yup.number().integer(),
   }),
   body: yup.object().shape({
-    name: yup.string(),
-    phone: yup.string().matches('^\\(\\d{2}\\)\\d{4,5}\\-\\d{4}$'),
-    site: yup.string(),
-    img: yup.string(),
-    key_img: yup.string(),
-    payMethods: yup.string(),
-    cnpj: yup
-      .string()
-      .test('len', 'Must be exactly 14 characters', (val) => val.length === 14)
-      .matches(/^[0-9]+$/, 'Must be only digits'),
+    salon: yup.object().shape({
+      name: yup.string().required(),
+      phone: yup.string().required().matches('^\\(\\d{2}\\)\\d{4,5}\\-\\d{4}$'),
+      site: yup.string(),
+      user_id: yup.number().integer(),
+      img: yup.string(),
+      key_img: yup.string(),
+      payMethods: yup.string(),
+      cnpj: yup
+        .string()
+        .test('len', 'Must be exactly 14 characters', (val) => val.length === 14)
+        .matches(/^[0-9]+$/, 'Must be only digits'),
+    }),
+    address: yup.object().shape({
+      zip: yup
+        .string()
+        .test('len', 'Must be exactly 8 characters', (val) => val.length === 8)
+        .matches(/^[0-9]+$/, 'Must be only digits'),
+      street: yup.string().required(),
+      street1: yup.string(),
+      number: yup.number().required(),
+      lat: yup.number(),
+      lng: yup.number(),
+      district: yup.string().required(),
+      city: yup.string().required(),
+      state: yup
+        .string()
+        .required()
+        .test('len', 'Must be exactly 2 characters', (val) => val.length === 2),
+      ddd: yup
+        .string()
+        .test('len', 'Must be exactly 2 characters', (val) => val.length === 2)
+        .matches(/^[0-9]+$/, 'Must be only digits'),
+    }),
   }),
 };
 

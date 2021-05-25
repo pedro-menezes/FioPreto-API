@@ -32,7 +32,7 @@ module.exports = (sequelize, DataTypes) => {
   );
 
   Address.associate = (models) => {
-    Address.belongsTo(models.Salon);
+    Address.belongsTo(models.Salon, { foreignKey: 'salon_id', as: 'salons' });
   };
 
   return Address;

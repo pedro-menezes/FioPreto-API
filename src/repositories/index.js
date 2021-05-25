@@ -3,6 +3,7 @@ const accessTokenRepository = require('./accessToken.repository');
 const salonsRepository = require('./salon.repository');
 const postsRepository = require('./post.repository');
 const imagesRepository = require('./image.repository');
+const addressesRepository = require('./address.repository');
 
 module.exports = {
   usersRepository,
@@ -10,4 +11,5 @@ module.exports = {
   salonsRepository,
   postsRepository,
   imagesRepository,
+  addressesRepository,
 };

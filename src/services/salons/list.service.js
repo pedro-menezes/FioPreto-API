@@ -3,7 +3,7 @@ const { queryHelper } = require('../../helpers');
 
 module.exports.list = async (options) => {
   const query = queryHelper(options);
-
+  query.include = options.include;
   const { count, rows } = await salonsRepository.list(query);
   const totalPages = Math.ceil(count / options.perPage);
 
