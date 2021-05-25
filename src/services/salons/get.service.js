@@ -4,8 +4,8 @@ const { salonsRepository } = require('../../repositories');
 const { ApplicationError } = require('../../utils');
 const { messages } = require('../../helpers');
 
-module.exports.get = async (id) => {
-  const salon = await salonsRepository.getById(id);
+module.exports.get = async (params) => {
+  const salon = await salonsRepository.getById(params);
   if (!salon) {
     throw new ApplicationError(messages.notFound('salon'), StatusCodes.NOT_FOUND);
   }

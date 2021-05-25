@@ -31,7 +31,8 @@ module.exports = {
 
   get: catchAsync(async (req, res) => {
     const { id } = req.params;
-    const response = await salonService.get(id);
+    const params = { where: { id: id }, include: { model: Address, as: 'addresses' } };
+    const response = await salonService.get(params);
     return res.status(StatusCodes.OK).json(response);
   }),
 
