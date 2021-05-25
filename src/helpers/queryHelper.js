@@ -4,7 +4,7 @@ module.exports.queryHelper = (options) => {
   const offset = parseInt(options.page, 10);
 
   const query = {
-    where: {},
+    where: options.where,
     limit,
     offset: limit * (offset - 1),
   };

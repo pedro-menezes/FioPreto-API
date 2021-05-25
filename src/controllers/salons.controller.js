@@ -15,6 +15,18 @@ module.exports = {
     return res.status(StatusCodes.OK).json(response);
   }),
 
+  listByUser: catchAsync(async (req, res) => {
+    const { page, perPage, sortBy } = req.query;
+    const { id } = req.session;
+    const response = await salonService.listByUser({ page, perPage, sortBy, id });
+
+    if (!response || response.data.length === 0) {
+      return res.status(StatusCodes.NO_CONTENT).end();
+    }
+
+    return res.status(StatusCodes.OK).json(response);
+  }),
+
   get: catchAsync(async (req, res) => {
     const { id } = req.params;
     const response = await salonService.get(id);
