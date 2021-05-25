@@ -10,7 +10,7 @@ const config = require('../config/database/sequelize');
 
 const db = {};
 
-const sequelize = new Sequelize(config.database, config.username, config.password, {
+const sequelize = new Sequelize(config.url, {
   ...config,
   logging: false,
 });
