@@ -3,6 +3,7 @@ const { catchAsync, ApplicationError } = require('../utils');
 const { salonService, imagesService, addressService } = require('../services');
 const { messages } = require('../helpers');
 const { Address } = require('../models');
+const { fn, col } = require('sequelize');
 
 module.exports = {
   list: catchAsync(async (req, res) => {

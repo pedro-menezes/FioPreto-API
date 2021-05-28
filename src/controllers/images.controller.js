@@ -13,7 +13,6 @@ module.exports = {
   update: '',
   destroy: catchAsync(async (req, res) => {
     const { id } = req.params;
-    console.log(id);
     await imagesService.destroy(id);
     return res.status(StatusCodes.NO_CONTENT).end();
   }),

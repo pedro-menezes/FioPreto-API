@@ -1,12 +1,48 @@
 const { StatusCodes } = require('http-status-codes');
 const { catchAsync, ApplicationError } = require('../utils');
 const { postsService, imagesService } = require('../services');
+const { User } = require('../models');
 const { messages } = require('../helpers');
 
 module.exports = {
   list: catchAsync(async (req, res) => {
     const { page, perPage, sortBy } = req.query;
-    const response = await postsService.list({ page, perPage, sortBy });
+    const params = { include: { model: User, as: 'posts' } };
+
+    const response = await postsService.list({ page, perPage, sortBy, params });
+
+    if (!response || response.data.length === 0) {
+      return res.status(StatusCodes.NO_CONTENT).end();
+    }
+
+    return res.status(StatusCodes.OK).json(response);
+  }),
+
+  listTips: catchAsync(async (req, res) => {
+    const { page, perPage, sortBy } = req.query;
+    const params = {
+      attributes: ['img', 'text'],
+      where: { type_id: 1 },
+      include: { attributes: ['name'], model: User, as: 'posts' },
+    };
+
+    const response = await postsService.list({ page, perPage, sortBy, params });
+
+    if (!response || response.data.length === 0) {
+      return res.status(StatusCodes.NO_CONTENT).end();
+    }
+
+    return res.status(StatusCodes.OK).json(response);
+  }),
+
+  listFeed: catchAsync(async (req, res) => {
+    const { page, perPage, sortBy } = req.query;
+    const params = {
+      attributes: ['img'],
+      where: { type_id: 2 },
+      include: { attributes: ['name'], model: User, as: 'posts' },
+    };
+    const response = await postsService.list({ page, perPage, sortBy, params });
 
     if (!response || response.data.length === 0) {
       return res.status(StatusCodes.NO_CONTENT).end();

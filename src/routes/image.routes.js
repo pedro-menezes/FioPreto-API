@@ -8,8 +8,8 @@ const {
   validationSchemas: { image },
 } = require('../validations');
 
-router.use(isAuthorized);
 router.post('/', multer(multerConfig).single('file'), imagesController.create);
+router.use(isAuthorized);
 router.delete('/:id', validate(image.destroy), imagesController.destroy);
 
 module.exports.image = router;

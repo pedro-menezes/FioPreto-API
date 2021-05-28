@@ -1,6 +1,7 @@
 const { create } = require('./create.service');
 const { getBySalon } = require('./getBySalon.service');
 const { update } = require('./update.service');
+const { listCity } = require('./listCity.service');
 const { destroy } = require('./destroy.service');
 
 module.exports = {
@@ -8,4 +9,5 @@ module.exports = {
   create,
   update,
   destroy,
+  listCity,
 };

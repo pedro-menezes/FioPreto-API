@@ -27,6 +27,8 @@ const create = {
       img: yup.string(),
       key_img: yup.string(),
       payMethods: yup.string(),
+      opening: yup.string(),
+      closing: yup.string(),
       cnpj: yup
         .string()
         .test('len', 'Must be exactly 14 characters', (val) => val.length === 14)
@@ -44,14 +46,8 @@ const create = {
       lng: yup.number(),
       district: yup.string().required(),
       city: yup.string().required(),
-      state: yup
-        .string()
-        .required()
-        .test('len', 'Must be exactly 2 characters', (val) => val.length === 2),
-      ddd: yup
-        .string()
-        .test('len', 'Must be exactly 2 characters', (val) => val.length === 2)
-        .matches(/^[0-9]+$/, 'Must be only digits'),
+      state: yup.string().test('len', 'Must be exactly 2 characters', (val) => val.length === 2),
+      ddd: yup.string(),
     }),
   }),
 };
@@ -69,6 +65,8 @@ const update = {
       img: yup.string(),
       key_img: yup.string(),
       payMethods: yup.string(),
+      opening: yup.string().required(),
+      closing: yup.string().required(),
       cnpj: yup
         .string()
         .test('len', 'Must be exactly 14 characters', (val) => val.length === 14)
@@ -86,14 +84,8 @@ const update = {
       lng: yup.number(),
       district: yup.string().required(),
       city: yup.string().required(),
-      state: yup
-        .string()
-        .required()
-        .test('len', 'Must be exactly 2 characters', (val) => val.length === 2),
-      ddd: yup
-        .string()
-        .test('len', 'Must be exactly 2 characters', (val) => val.length === 2)
-        .matches(/^[0-9]+$/, 'Must be only digits'),
+      state: yup.string().test('len', 'Must be exactly 2 characters', (val) => val.length === 2),
+      ddd: yup.string(),
     }),
   }),
 };

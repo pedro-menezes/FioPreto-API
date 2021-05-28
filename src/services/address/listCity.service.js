@@ -1,11 +1,10 @@
-const { postsRepository } = require('../../repositories');
+const { addressesRepository } = require('../../repositories');
 const { queryHelper } = require('../../helpers');
 
-module.exports.list = async (options) => {
+module.exports.listCity = async (options) => {
   let query = queryHelper(options);
   query = Object.assign(query, options.params);
-  console.log(query);
-  const { count, rows } = await postsRepository.list(query);
+  const { count, rows } = await addressesRepository.list(query);
   const totalPages = Math.ceil(count / options.perPage);
 
   return {

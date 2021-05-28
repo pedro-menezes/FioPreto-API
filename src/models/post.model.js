@@ -16,6 +16,7 @@ module.exports = (sequelize, DataTypes) => {
       text: DataTypes.TEXT,
       img: DataTypes.TEXT,
       key_img: DataTypes.TEXT,
+      type_id: DataTypes.INTEGER,
     },
     {
       tableName: 'posts',
@@ -25,7 +26,8 @@ module.exports = (sequelize, DataTypes) => {
   );
 
   Post.associate = (models) => {
-    Post.belongsToMany(models.User, { through: 'reactions' });
+    Post.belongsTo(models.User, { foreignKey: 'user_id', as: 'posts' });
+    Post.belongsToMany(models.User, { through: 'reactions', foreignKey: 'post_id' });
   };
 
   return Post;
