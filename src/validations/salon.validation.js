@@ -23,7 +23,7 @@ const create = {
       name: yup.string().required(),
       phone: yup.string().required().matches('^\\(\\d{2}\\)\\d{4,5}\\-\\d{4}$'),
       site: yup.string(),
-      user_id: yup.number().integer(),
+      user_id: yup.number().integer().required(),
       img: yup.string(),
       key_img: yup.string(),
       payMethods: yup.string(),

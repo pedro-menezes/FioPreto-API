@@ -53,7 +53,6 @@ module.exports = {
 
   create: catchAsync(async (req, res) => {
     const { body } = req;
-    body.salon.user_id = req.session.id;
 
     const response = {};
     response.salon = await salonService.create(body.salon);
