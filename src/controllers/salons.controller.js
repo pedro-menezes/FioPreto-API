@@ -3,7 +3,7 @@ const { catchAsync, ApplicationError } = require('../utils');
 const { salonService, imagesService, addressService } = require('../services');
 const { messages } = require('../helpers');
 const { Address } = require('../models');
-const { fn, col } = require('sequelize');
+const { Sequelize } = require('sequelize');
 
 module.exports = {
   list: catchAsync(async (req, res) => {
@@ -22,6 +22,20 @@ module.exports = {
     const { page, perPage, sortBy } = req.query;
     const { id } = req.session;
     const response = await salonService.listByUser({ page, perPage, sortBy, id });
+
+    if (!response || response.data.length === 0) {
+      return res.status(StatusCodes.NO_CONTENT).end();
+    }
+
+    return res.status(StatusCodes.OK).json(response);
+  }),
+
+  listCity: catchAsync(async (req, res) => {
+    const params = {
+      attributes: [[Sequelize.fn('DISTINCT', Sequelize.col('city')), 'city']],
+    };
+
+    const response = await addressService.listCity({ params });
 
     if (!response || response.data.length === 0) {
       return res.status(StatusCodes.NO_CONTENT).end();

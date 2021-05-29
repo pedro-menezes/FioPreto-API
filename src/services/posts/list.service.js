@@ -4,7 +4,6 @@ const { queryHelper } = require('../../helpers');
 module.exports.list = async (options) => {
   let query = queryHelper(options);
   query = Object.assign(query, options.params);
-  console.log(query);
   const { count, rows } = await postsRepository.list(query);
   const totalPages = Math.ceil(count / options.perPage);
 

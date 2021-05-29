@@ -7,6 +7,7 @@ const {
 
 router.get('/', validate(salon.list), salonsController.list);
 router.get('/user/', validate(salon.list), salonsController.listByUser);
+router.get('/city/', validate(salon.list), salonsController.listCity);
 router.get('/:id', validate(salon.get), salonsController.get);
 
 router.use(isAuthorized);
