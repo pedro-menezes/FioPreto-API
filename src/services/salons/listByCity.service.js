@@ -7,7 +7,6 @@ module.exports.listByCity = async (options) => {
   query = Object.assign(query, options);
   const resposta = await salonsRepository.list(query);
   const { count, rows } = resposta;
-  console.log(query);
   const totalPages = Math.ceil(count / options.perPage);
 
   return {

@@ -57,8 +57,26 @@ module.exports = {
     return res.status(StatusCodes.OK).json(response);
   }),
 
-  create: catchAsync(async (req, res) => {
+  createFeed: catchAsync(async (req, res) => {
+    const { location: url = '', key } = req.file;
     const { body } = req;
+    body.img = url;
+    body.type_id = 2;
+    body.key = key;
+    body.user_id = req.session.id;
+
+    const response = await postsService.create(body);
+
+    return res.status(StatusCodes.CREATED).json(response);
+  }),
+
+  createTips: catchAsync(async (req, res) => {
+    const { location: url = '', key } = req.file;
+    console.log(req);
+    const { body } = req;
+    body.img = url;
+    body.type_id = 1;
+    body.key = key;
     body.user_id = req.session.id;
 
     const response = await postsService.create(body);

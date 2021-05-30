@@ -4,7 +4,6 @@ const { queryHelper } = require('../../helpers');
 module.exports.list = async (options) => {
   let query = queryHelper(options);
   query = Object.assign(query, options);
-  console.log(query);
   const resposta = await salonsRepository.list(query);
   const { count, rows } = resposta;
   const totalPages = Math.ceil(count / options.perPage);
