@@ -17,6 +17,20 @@ const get = {
   }),
 };
 
+const getByCity = {
+  params: yup.object().shape({
+    ibge: yup.number().integer(),
+  }),
+  query: yup.object().shape({
+    page: yup.number().integer().default(1),
+    perPage: yup.number().integer().default(10),
+    sortBy: yup
+      .string()
+      .default('createdAt:desc')
+      .matches(/[:](asc|desc)/i, "sorting order must be one of the following: 'asc' or 'desc'"),
+  }),
+};
+
 const create = {
   body: yup.object().shape({
     salon: yup.object().shape({
@@ -41,6 +55,7 @@ const create = {
         .matches(/^[0-9]+$/, 'Must be only digits'),
       street: yup.string().required(),
       street1: yup.string(),
+      ibge: yup.number().integer().required(),
       number: yup.number().required(),
       lat: yup.number(),
       lng: yup.number(),
@@ -82,6 +97,7 @@ const update = {
       number: yup.number().required(),
       lat: yup.number(),
       lng: yup.number(),
+      ibge: yup.number().integer().required(),
       district: yup.string().required(),
       city: yup.string().required(),
       state: yup.string().test('len', 'Must be exactly 2 characters', (val) => val.length === 2),
@@ -102,4 +118,5 @@ module.exports.salon = {
   create,
   update,
   destroy,
+  getByCity,
 };

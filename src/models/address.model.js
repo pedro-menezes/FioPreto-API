@@ -17,6 +17,7 @@ module.exports = (sequelize, DataTypes) => {
       district: DataTypes.STRING,
       street: DataTypes.STRING,
       number: DataTypes.INTEGER,
+      ibge: DataTypes.INTEGER,
       street1: DataTypes.STRING,
       city: DataTypes.STRING,
       state: DataTypes.STRING(2),

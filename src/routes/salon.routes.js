@@ -7,9 +7,10 @@ const {
 
 router.get('/', validate(salon.list), salonsController.list);
 router.get('/user/', validate(salon.list), salonsController.listByUser);
-router.get('/city/', validate(salon.list), salonsController.listCity);
+router.get('/city/', salonsController.listCity);
 router.post('/', validate(salon.create), salonsController.create);
 router.get('/:id', validate(salon.get), salonsController.get);
+router.get('/city/:ibge', validate(salon.getByCity), salonsController.listByCity);
 
 router.use(isAuthorized);
 router.use(isHairdresser);

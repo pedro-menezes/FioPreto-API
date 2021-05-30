@@ -26,7 +26,7 @@ const create = {
       .string()
       .min(8)
       .matches(
-        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$^+=!*()@%&]).{8,10}$/,
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$^+=!*()@%&]).{8,20}$/,
         'password must have lower and upper letters, at least one number, and at least one special character',
       )
       .required(),
@@ -44,7 +44,7 @@ const update = {
       .string()
       .min(8)
       .matches(
-        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$^+=!*()@%&]).{8,10}$/,
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[#$^+=!*()@%&]).{8,20}$/,
         'password must have lower and upper letters, at least one number, and at least one special character',
       ),
   }),

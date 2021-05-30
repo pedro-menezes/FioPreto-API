@@ -1,12 +1,13 @@
 const { salonsRepository } = require('../../repositories');
 const { queryHelper } = require('../../helpers');
 
-module.exports.list = async (options) => {
+module.exports.listByCity = async (options) => {
   let query = queryHelper(options);
+  query.where = options.where;
   query = Object.assign(query, options);
-  console.log(query);
   const resposta = await salonsRepository.list(query);
   const { count, rows } = resposta;
+  console.log(query);
   const totalPages = Math.ceil(count / options.perPage);
 
   return {
