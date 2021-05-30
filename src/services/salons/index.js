@@ -5,6 +5,7 @@ const { get } = require('./get.service');
 const { update } = require('./update.service');
 const { destroy } = require('./destroy.service');
 const { listByCity } = require('./listByCity.service');
+const { getById } = require('./getById.service');
 
 module.exports = {
   list,
@@ -14,4 +15,5 @@ module.exports = {
   update,
   destroy,
   listByCity,
+  getById,
 };

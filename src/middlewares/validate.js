@@ -17,11 +17,6 @@ module.exports = (schema) => async (req, res, next) => {
     Object.assign(req, value);
     next();
   } catch (error) {
-    const errors = {};
-    error.inner.forEach((error) => {
-      const [outerKey, innerKey] = error.path.split('.');
-      errors[outerKey] = { [innerKey]: error.message };
-    });
-    next(new ApplicationError(messages.invalidFields, StatusCodes.BAD_REQUEST, true, '', errors));
+    next(new ApplicationError(messages.invalidFields, StatusCodes.BAD_REQUEST, true, '', error));
   }
 };

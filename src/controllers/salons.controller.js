@@ -78,13 +78,14 @@ module.exports = {
       body,
     } = req;
 
-    const salon = await salonService.get(id);
+    const salon = await salonService.getById(id);
 
     if (salon.user_id != req.session.id) {
       throw new ApplicationError(messages.notOwner, StatusCodes.UNAUTHORIZED);
     }
 
     const address = await addressService.getBySalon(id);
+    console.log(address);
     await addressService.update(address.id, body.address);
 
     const response = await salonService.update(id, body.salon);
