@@ -37,9 +37,14 @@ module.exports = {
     return res.status(StatusCodes.OK).json(response);
   }),
 
-  createFeed: '',
+  create: catchAsync(async (req, res) => {
+    const { body } = req;
+    body.user_id = req.session.id;
 
-  createTips: '',
+    const response = await schedulingService.create(body);
+
+    return res.status(StatusCodes.CREATED).json(response);
+  }),
 
   update: '',
 

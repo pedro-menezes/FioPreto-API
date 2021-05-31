@@ -28,9 +28,9 @@ const get = {
 
 const create = {
   body: yup.object().shape({
-    user_id: yup.number().integer().required(),
-    salon: yup.number().integer().required(),
-    dateTime: yup.string().required(),
+    salon_id: yup.number().integer().required(),
+    date: yup.string().required(),
+    time: yup.string().required(),
   }),
 };
 
@@ -39,9 +39,9 @@ const update = {
     id: yup.number().integer(),
   }),
   body: yup.object().shape({
-    user_id: yup.number().integer().required(),
-    salon: yup.number().integer().required(),
-    dateTime: yup.string().required(),
+    salon_id: yup.number().integer().required(),
+    date: yup.string().required(),
+    time: yup.string().required(),
   }),
 };
 

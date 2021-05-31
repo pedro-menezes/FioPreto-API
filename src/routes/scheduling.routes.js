@@ -8,5 +8,6 @@ const {
 
 router.use(isAuthorized);
 router.get('/:date', validate(scheduling.get), schedulingController.list);
+router.post('/', validate(scheduling.create), schedulingController.create);
 
 module.exports.scheduling = router;
