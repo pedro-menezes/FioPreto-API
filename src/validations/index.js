@@ -3,6 +3,7 @@ const { auth } = require('./auth.validation');
 const { salon } = require('./salon.validation');
 const { post } = require('./post.validation');
 const { image } = require('./image.validation');
+const { scheduling } = require('./scheduling.validation');
 
 module.exports.validationSchemas = {
   user,
@@ -10,4 +11,5 @@ module.exports.validationSchemas = {
   salon,
   post,
   image,
+  scheduling,
 };

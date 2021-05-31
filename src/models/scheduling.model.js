@@ -13,7 +13,8 @@ module.exports = (sequelize, DataTypes) => {
   }
   Scheduling.init(
     {
-      dateTime: DataTypes.DATE,
+      date: DataTypes.DATE,
+      time: DataTypes.TIME,
     },
     {
       tableName: 'schedulings',

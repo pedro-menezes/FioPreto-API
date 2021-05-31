@@ -5,6 +5,7 @@ const salonService = require('./salons');
 const postsService = require('./posts');
 const imagesService = require('./images');
 const addressService = require('./address');
+const schedulingService = require('./scheduling');
 
 module.exports = {
   usersService,
@@ -14,4 +15,5 @@ module.exports = {
   postsService,
   imagesService,
   addressService,
+  schedulingService,
 };
