@@ -19,6 +19,7 @@ module.exports = {
   }),
 
   listByUser: catchAsync(async (req, res) => {
+    console.log(req);
     const { page, perPage, sortBy } = req.query;
     const { id } = req.session;
     const response = await salonService.listByUser({ page, perPage, sortBy, id });
