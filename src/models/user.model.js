@@ -46,7 +46,7 @@ module.exports = (sequelize, DataTypes) => {
     User.hasOne(models.Salon, { foreignKey: 'user_id' });
     User.hasMany(models.Post, { foreignKey: 'user_id', as: 'posts' });
     User.belongsToMany(models.Post, { through: 'reactions' });
-    User.belongsToMany(models.Salon, { through: 'schedulings' });
+    User.belongsToMany(models.Salon, { through: 'schedulings', as: 'users' });
     User.belongsToMany(models.Salon, { through: 'votes' });
     User.belongsToMany(models.Post, { through: 'reactions', foreignKey: 'user_id' });
   };

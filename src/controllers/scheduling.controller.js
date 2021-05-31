@@ -21,7 +21,17 @@ module.exports = {
     console.log(dateFormat);
     console.log(salon.data[0].id);
 
-    const params = { where: { date: dateFormat, salon_id: salon.data[0].id } };
+    const params = {
+      where: {
+        date: dateFormat,
+        salon_id: salon.data[0].id,
+      },
+      include: {
+        attributes: ['name'],
+        model: User,
+        as: 'user',
+      },
+    };
     const response = await schedulingService.list(params);
 
     return res.status(StatusCodes.OK).json(response);
