@@ -45,8 +45,9 @@ const create = {
       closing: yup.string(),
       cnpj: yup
         .string()
-        .test('len', 'Must be exactly 14 characters', (val) => val.length === 14)
-        .matches(/^[0-9]+$/, 'Must be only digits'),
+        .matches(/^[0-9]+$/, 'Must be only digits')
+        .min(14, 'Must be exactly 14 digits')
+        .max(14, 'Must be exactly 14 digits'),
     }),
     address: yup.object().shape({
       zip: yup
@@ -84,8 +85,9 @@ const update = {
       closing: yup.string(),
       cnpj: yup
         .string()
-        .test('len', 'Must be exactly 14 characters', (val) => val.length === 14)
-        .matches(/^[0-9]+$/, 'Must be only digits'),
+        .matches(/^[0-9]+$/, 'Must be only digits')
+        .min(14, 'Must be exactly 14 digits')
+        .max(14, 'Must be exactly 14 digits'),
     }),
     address: yup.object().shape({
       zip: yup
