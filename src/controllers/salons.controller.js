@@ -19,10 +19,10 @@ module.exports = {
   }),
 
   listByUser: catchAsync(async (req, res) => {
-    console.log(req);
     const { page, perPage, sortBy } = req.query;
     const { id } = req.session;
-    const response = await salonService.listByUser({ page, perPage, sortBy, id });
+    const params = { where: { user_id: id }, include: { model: Address, as: 'addresses' } };
+    const response = await salonService.listByUser({ page, perPage, sortBy, params });
 
     if (!response || response.data.length === 0) {
       return res.status(StatusCodes.NO_CONTENT).end();

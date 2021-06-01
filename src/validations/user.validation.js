@@ -22,6 +22,7 @@ const create = {
     name: yup.string().required(),
     dob: yup.date().required(),
     email: yup.string().email().required(),
+    isHairdresser: yup.boolean(),
     password: yup
       .string()
       .min(8)
@@ -40,6 +41,7 @@ const update = {
   body: yup.object().shape({
     name: yup.string(),
     email: yup.string().email(),
+    isHairdresser: yup.boolean(),
     password: yup
       .string()
       .min(8)

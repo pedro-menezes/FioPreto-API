@@ -2,8 +2,8 @@ const { salonsRepository } = require('../../repositories');
 const { queryHelper } = require('../../helpers');
 
 module.exports.listByUser = async (options) => {
-  const query = queryHelper(options);
-  query.where = { user_id: options.id };
+  var query = queryHelper(options);
+  query = Object.assign(query, options.params);
   const { count, rows } = await salonsRepository.list(query);
   const totalPages = Math.ceil(count / options.perPage);
 
