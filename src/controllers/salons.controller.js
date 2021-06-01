@@ -55,7 +55,7 @@ module.exports = {
   listByCity: catchAsync(async (req, res) => {
     const { ibge } = req.params;
     const { page, perPage, sortBy } = req.query;
-    const include = { where: { ibge: ibge }, attributes: [], model: Address, as: 'addresses' };
+    const include = { where: { ibge: ibge }, model: Address, as: 'addresses' };
     const response = await salonService.list({ page, perPage, sortBy, include });
 
     return res.status(StatusCodes.OK).json(response);
