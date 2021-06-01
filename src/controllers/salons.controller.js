@@ -86,10 +86,11 @@ module.exports = {
     }
 
     const address = await addressService.getBySalon(id);
-    console.log(address);
-    await addressService.update(address.id, body.address);
+    const responseAddress = await addressService.update(address.id, body.address);
 
     const response = await salonService.update(id, body.salon);
+
+    response.dataValues.address = responseAddress;
     return res.status(StatusCodes.OK).json(response);
   }),
 
