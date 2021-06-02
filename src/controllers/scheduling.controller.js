@@ -17,11 +17,12 @@ module.exports = {
 
     const { page, perPage, sortBy } = req.query;
     const { id } = req.session;
-    const salon = await salonService.listByUser({ page, perPage, sortBy, id });
-    console.log(dateFormat);
+    var params = { where: { user_id: id } };
+    const salon = await salonService.listByUser({ page, perPage, sortBy, params });
     console.log(salon.data[0].id);
+    console.log(id);
 
-    const params = {
+    params = {
       where: {
         date: dateFormat,
         salon_id: salon.data[0].id,
