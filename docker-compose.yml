@@ -1,0 +1,34 @@
+version: "3" ## especifica a versão do docker-compose file
+
+services: ## Define um serviço
+  app: ## nome do serviço
+    build: '.' ## localização do dockerfile
+    ports:
+      - '3000:3000' ## redirecionamento de porta quando chegar alguma requisição na porta 3000 chama o container na porta 3000
+    depends_on: 
+      - postgres
+    volumes:
+      - .:/usr/app ## monitoro a pasta atual . e envio as alterações para /usr/app
+    networks: 
+      - app-connect
+
+  postgres:
+    image: postgres
+    restart: unless-stopped
+    environment: 
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASS} 
+    ports: 
+      - '5433:5432'
+    volumes:
+      - postgres-data:/data
+    networks: 
+      - app-connect
+
+volumes:
+  postgres-data:
+
+networks:
+  app-connect:
+      driver: bridge
