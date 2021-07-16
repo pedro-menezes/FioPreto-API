@@ -1,0 +1,80 @@
+version: '3'
+
+services:
+  nginx: 
+    build:
+      dockerfile: ./docker/nginx.dockerfile
+      context: .
+    image: sample/nginx
+    container_name: nginx
+    ports:
+     - "80:80"
+    networks:
+     - production-network
+    depends_on:
+        - "node1"
+        - "node2"
+        - "node3"
+
+  node1:
+    build:
+      dockerfile: ./docker/dockerfile
+      context: .
+    container_name: app_1
+    ports:
+      - '3000' 
+    depends_on: 
+      - postgres
+    networks: 
+      - app-connect
+      - production-network   
+      
+  node2:
+    build: 
+      dockerfile: ./docker/dockerfile
+      context: .
+    container_name: app_2
+    ports:
+      - '3000' 
+    depends_on: 
+      - postgres
+    networks: 
+      - app-connect   
+      - production-network   
+
+  node3:
+    build: 
+      dockerfile: ./docker/dockerfile
+      context: .
+    container_name: app_3
+    ports:
+      - '3000' 
+    depends_on: 
+      - postgres
+    networks: 
+      - app-connect   
+      - production-network   
+      
+  postgres:
+    image: postgres
+    restart: unless-stopped
+    environment: 
+        POSTGRES_DB: ${DB_NAME}
+        POSTGRES_USER: ${DB_USER}
+        POSTGRES_PASSWORD: ${DB_PASS} 
+    ports: 
+    - '5433:5432'
+    volumes:
+    - postgres-data:/data
+    networks: 
+    - app-connect
+
+volumes:
+  postgres-data:
+
+networks:
+  production-network:
+    driver: bridge
+  
+  app-connect:
+      driver: bridge
