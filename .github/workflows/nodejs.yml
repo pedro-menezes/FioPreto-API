@@ -5,7 +5,7 @@ on:
     branches: [master, develop]
   pull_request:
     branches: [master, develop]
-
+          
 jobs:
   build:
     runs-on: self-hosted
@@ -16,22 +16,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-        env:
-          NODE_ENV: development
-          PORT: ${{ secrets.PORT }}
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_DEFAULT_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
-          STORAGE_TYPE: ${{ secrets.STORAGE_TYPE }} 
-          JWT_SECRET: ${{ secrets.JWT_SECRET }}
-          ACCESS_TOKEN_EXPIRES_IN: 7d
-          REFRESH_TOKEN_EXPIRES_IN: 24h
-          RESET_TOKEN_EXPIRES_IN: 1h
-          DATABASE_URL: ${{ secrets.DATABASE_URL }}
-          DB_NAME: ${{ secrets.DB_NAME }}
-          DB_HOST: ${{ secrets.DB_HOST }}
-          DB_USER: ${{ secrets.DB_USER }}
-          DB_PASS: ${{ secrets.DB_PASS }}
           
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
@@ -39,7 +23,39 @@ jobs:
           node-version: ${{ matrix.node-version }}
           
       - name: Build docker
+        env:
+          NODE_ENV: development
+          PORT: ${{secrets.PORT}}
+          AWS_ACCESS_KEY_ID: ${{secrets.AWS_ACCESS_KEY_ID}}
+          AWS_SECRET_ACCESS_KEY: ${{secrets.AWS_SECRET_ACCESS_KEY}}
+          AWS_DEFAULT_REGION: ${{secrets.AWS_DEFAULT_REGION}}
+          STORAGE_TYPE: ${{secrets.STORAGE_TYPE}} 
+          JWT_SECRET: ${{secrets.JWT_SECRET}}
+          ACCESS_TOKEN_EXPIRES_IN: 7d
+          REFRESH_TOKEN_EXPIRES_IN: 24h
+          RESET_TOKEN_EXPIRES_IN: 1h
+          DATABASE_URL: ${{secrets.DATABASE_URL}}
+          DB_NAME: ${{secrets.DB_NAME}}
+          DB_HOST: ${{secrets.DB_HOST}}
+          DB_USER: ${{secrets.DB_USER}}
+          DB_PASS: ${{secrets.DB_PASS}}
         run: docker-compose build
         
       - name: Docker up
+        env:
+          NODE_ENV: development
+          PORT: ${{secrets.PORT}}
+          AWS_ACCESS_KEY_ID: ${{secrets.AWS_ACCESS_KEY_ID}}
+          AWS_SECRET_ACCESS_KEY: ${{secrets.AWS_SECRET_ACCESS_KEY}}
+          AWS_DEFAULT_REGION: ${{secrets.AWS_DEFAULT_REGION}}
+          STORAGE_TYPE: ${{secrets.STORAGE_TYPE}} 
+          JWT_SECRET: ${{secrets.JWT_SECRET}}
+          ACCESS_TOKEN_EXPIRES_IN: 7d
+          REFRESH_TOKEN_EXPIRES_IN: 24h
+          RESET_TOKEN_EXPIRES_IN: 1h
+          DATABASE_URL: ${{secrets.DATABASE_URL}}
+          DB_NAME: ${{secrets.DB_NAME}}
+          DB_HOST: ${{secrets.DB_HOST}}
+          DB_USER: ${{secrets.DB_USER}}
+          DB_PASS: ${{secrets.DB_PASS}}
         run: docker-compose up -d
