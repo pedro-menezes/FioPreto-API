@@ -26,7 +26,7 @@ jobs:
         env:
           DATABASE_URL: ${{secrets.DATABASE_URL}}
         run: |
-          echo $DATABASE_URL 
+          echo "minha variavel $DATABASE_URL" 
           
       - name: Build docker
         run: docker-compose build
