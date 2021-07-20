@@ -24,7 +24,7 @@ jobs:
           
       - name: create env file
         run: |
-          echo ${{secrets}}
+          echo ${{secrets.AWS_ACCESS_KEY_ID}}
           touch .env
           echo NODE_ENV=development >> .env
           echo PORT=${{ secrets.PORT }} >> .env
