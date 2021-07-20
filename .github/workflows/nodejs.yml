@@ -22,9 +22,10 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
-      - name: Teste secrets
+      - name: Create env file
         run: |
-          echo ${{ secrets.DATABASE_URL }}
+          touch .env
+          echo DATABASE_URL=${{ secrets.DATABASE_URL }} >> .env
           
       - name: Build docker
         run: docker-compose build
